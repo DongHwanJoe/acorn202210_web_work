@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>인덱스 페이지 입니다.</h1>
+		<ul>
+			<li><a href="fortune">오늘의 운세 보기</a></li>
+			<li><a href="fortune.jsp">오늘의 운세 보기2</a></li>
+			<li><a href="friend/list">친구 목록 보기</a></li>
+			<li><a href="friend/list.jsp">친구 목록 보기2</a></li>
+			<li><a href="member/list">회원 목록 보기</a></li>
+			<li><a href="member/list.jsp">회원 목록 보기2</a></li>
+		</ul>
+		<!-- 
+				폼을 제출(submit)하면 (type = "submit" 인 전송 버튼을 누르면)
+				action = "요청경로"
+				method = "전송방식"
+				
+				서버에 "요청경로" 대로 요청이 되고
+				폼에 입력한 내용은 "전송방식"으로 전송이 된다. (get or post)
+				
+				- form 사용법
+				1. action 속성의 값은 폼을 제출했을때 요청되는 경로가 된다.
+				2. method 속성의 값은 전송 방식을 지정한다. 생략하면 default 값은 get이다.
+				3. form의 자손요소중에 type = "submit" 버튼을 누르면 폼이 제출된다.
+				4. 전송 방식은 get 방식과 post 방식이 있는데
+				   get 방식 전송은 입력한 정보를 주소창에 달고가는 방식이고
+				   post 방식 전송은 요청의 몸통에 달고가는 방식이기 떄문에 주소창에 보이지 않는다.
+		 -->
+		 <form action="/Step01_Servlet/send" method="get">
+		 	<input type="text" name="msg" placeholder="서버에 할 말 입력..." />
+		 	<button type="submit">전송</button>
+		 </form>
+		 <br>
+		 <form action="/Step01_Servlet/send2" method="post">
+		 	<input type="text" name="msg" placeholder="서버에 할 말 입력..." />
+		 	<button type="submit">전송</button>
+		 </form>
+		 <br>
+		 <form action="/Step01_Servlet/send.jsp" method="post">
+		 	<input class="form-control form-control-sm" type="text" name="msg" placeholder="서버에 할 말 입력..." />
+		 	<button type="submit">전송</button>
+		 </form>
+		 
+		 <br />
+		 <p>링크를 눌러도 GET 방식 전송 파라미터를 전달할 수 있다.</p>
+		 <p>아래의 링크를 눌러보세요</p>
+		 <ul>
+		 	<li><a href="shop/buy.jsp?num=1&amount=2">1번 상품 2개 구입하기</a></li>
+		 	<li><a href="shop/buy.jsp?num=5&amount=3">5번 상품 3개 구입하기</a></li>
+		 	
+		 </ul>
+	</div>
+</body>
+</html>
