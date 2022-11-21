@@ -17,8 +17,8 @@
 			<a href="${pageContext.request.contextPath }/users/loginform.jsp">로그인</a>
 		<%}else{ %>
 			<p>
-				<strong><%=id %></strong>님 환영합니다.
-				<br />
+				<a href="${pageContext.request.contextPath }/users/private/info.jsp"><%=id %></a>님 환영합니다.
+				
 				<a href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a>
 			</p>
 		<%} %>
