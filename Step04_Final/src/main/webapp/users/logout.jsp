@@ -1,32 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String id = (String)session.getAttribute("id");
-	session.setMaxInactiveInterval(10);
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/index.jsp</title>
+<title>/users/logout.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="container">
-		<%if(id == null){ %>
-			<a href="${pageContext.request.contextPath }/users/loginform.jsp">로그인</a>
-		<%}else{ %>
-			<p>
-				<strong><%=id %></strong>님 환영합니다.
-				<br />
-				<a href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a>
-			</p>
-		<%} %>
-		<h1>인덱스 페이지 입니다.</h1>
-		<ul>
-			<li><a href="${pageContext.request.contextPath }/users/signup_form.jsp">회원가입</a></li>
-		</ul>
-	</div>
+	<%
+		session.invalidate();
+	%>
+	<script>
+		alert("로그아웃 되었습니다.");
+		location.href="${pageContext.request.contextPath }/index.jsp";
+	</script>
 </body>
 </html>
