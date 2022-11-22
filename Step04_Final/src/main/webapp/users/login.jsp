@@ -11,7 +11,6 @@
 	String encodedUrl = URLEncoder.encode(url); 
 	
 	//1. 폼 전송되는 아이디, 비밀번호 읽어오기
-	request.setCharacterEncoding("utf-8");
 
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
@@ -39,7 +38,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="cotainer">
+	<div class="container">
 		<%if(isValid){ %>
 			<p class="alert alert-success">
 				로그인 성공
@@ -47,7 +46,7 @@
 			</p>
 		<%}else{ %>
 			<p class="alert alert-danger">
-				id 혹은 pw를 확인해주세요.
+				로그인 실패 id 혹은 pw를 확인해주세요.
 				<a href="${pageContext.request.contextPath }/users/loginform.jsp?url=<%=encodedUrl %>">다시시도</a>
 			</p>
 		<%} %>

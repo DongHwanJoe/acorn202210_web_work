@@ -18,7 +18,6 @@
 		<%}else{ %>
 			<p>
 				<a href="${pageContext.request.contextPath }/users/private/info.jsp"><%=id %></a>님 환영합니다.
-				
 				<a href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a>
 			</p>
 		<%} %>

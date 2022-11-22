@@ -21,7 +21,7 @@ public class UsersDao {
 	}
 	
 	//인자로 전달된 pwd로 비밀번호를 변경하는 메소드
-	public boolean pwdUpdate(UsersDto dto) {
+	public boolean updatePwd(UsersDto dto) {
 		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -32,13 +32,14 @@ public class UsersDao {
 			//실행할 sql문의 뼈대 구성하기
 			String sql = "UPDATE users SET"
 					+ " pwd = ?"
-					+ " WHERE id = ?";
+					+ " WHERE id = ? AND pwd = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
-			pstmt.setString(1, dto.getPwd());
+			pstmt.setString(1, dto.getNewPwd());
 			pstmt.setString(2, dto.getId());
-			//SELECT문을 수행하고 결과값을 얻어온다.
+			pstmt.setString(3, dto.getPwd());
+			
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

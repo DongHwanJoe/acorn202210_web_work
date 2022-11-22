@@ -10,15 +10,35 @@
 </head>
 <body>
 	<div class="container">
-		<h1>비밀번호 수정 폼 입니다.</h1>
-		<form action="pwd_update.jsp" method="post">
+		<h1>비밀번호 수정 폼</h1>
+		<form action="pwd_update.jsp" method="post" id="myForm">
 			<div class="mb-2">
-				<label class="form-label" for="pwd">변경 비밀번호</label>
+				<label class="form-label" for="pwd">기존 비밀번호</label>
 				<input class="form-control" type="password" name="pwd" id="pwd"/>
 			</div>
+			<div class="mb-2">
+				<label class="form-label" for="newPwd">변경 비밀번호</label>
+				<input class="form-control" type="password" name="newPwd" id="newPwd"/>
+			</div>
+			<div class="mb-2">
+				<label class="form-label" for="newPwd2">변경 비밀번호</label>
+				<input class="form-control" type="password" id="newPwd2"/>
+			</div>
 			<button class="btn btn-primary" type="submit">수정확인</button>
+			<button class="btn btn-info" type="reset">리셋</button>
 		</form>
 		<a class="btn btn-danger" href="info.jsp">취소</a>
 	</div>
+	<script>
+		document.querySelector("#myForm").addEventListener("submit", function(event){
+			let pwd1 = document.querySelector("#newPwd").value;
+			let pwd2 = document.querySelector("#newPwd2").value;
+			//새 비밀번호와 확인이 일치하지 않으면 폼 전송을 막는다.
+			if(pwd1 != pwd2){
+				alert("비밀번호를 확인하세요");
+				event.preventDefault();//폼 제출 막기
+			}
+		});
+	</script>
 </body>
 </html>
