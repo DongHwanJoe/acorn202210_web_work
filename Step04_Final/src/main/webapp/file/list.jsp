@@ -5,8 +5,49 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
-	//파일목록을 얻어와서
-	List<FileDto> list = FileDao.getInstance().getList();
+	
+	//한 페이지에 몇개씩 표기할 것인지
+	final int PAGE_ROW_COUNT = 5;
+	//하단 페이지를 몇개씩 표기할 것인지
+	final int PAGE_DISPLAY_COUNT = 5;
+	
+	//보여줄 페이지의 번호의 초기값을 1로 지정
+	int pageNum = 1;
+	
+	//페이지 번호가 파라미터로 전달되는지 읽어와본다.
+	String strPageNum = request.getParameter("pageNum");
+	//만일 페이지 번호가 파라미터로 넘어오면
+	if(strPageNum != null){
+		//숫자로 바꿔서 보여줄 페이지 번호로 저장
+		pageNum = Integer.parseInt(strPageNum);
+	}
+	
+	//보여줄 페이지의 시작 ROWNUM
+	int startRowNum = 1 + (pageNum - 1) * PAGE_ROW_COUNT;
+	//보여줄 페이지의 끝 ROWNUM
+	int endRowNum = pageNum * PAGE_ROW_COUNT;
+	
+	//하단 시작 페이지 번호
+	int startPageNum = 1 + ((pageNum - 1) / PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+	//하단 끝 페이지 번호
+	int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	//전체 글의 개수
+	int totalRow = FileDao.getInstance().getCount();
+	//전체 페이지의 개수 구하기
+	int totalPageCount = (int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+	//끝 페이지 번호가 이미 전체 페이지 개수보다 크게 계산됐다면 잘못된 값이다.
+	if(endPageNum > totalPageCount){
+		endPageNum = totalPageCount; // 보정해준다.
+	}
+	
+	//FileDto 객페를 생성해서
+	FileDto dto = new FileDto();
+	//위에서 계산된 startRowNum, endRowNum을 담아서
+	dto.setStartRowNum(startRowNum);
+	dto.setEndRowNum(endRowNum);
+	//파일 목록을 select 해온다.
+	List<FileDto> list = FileDao.getInstance().getList(dto);
+	
 	//응답하기
 %>
 <!DOCTYPE html>
@@ -63,10 +104,35 @@
 				<%} %>
 			</tbody>
 		</table>
+		<nav>
+			<ul class="pagination">
+				<%-- 
+					startPageNum이 1이 아닌 경우에만 Prev 링크를 제공한다,
+				 --%>
+				<%if(startPageNum != 1){ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+					</li>
+				<%} %>
+				
+				<%for(int i = startPageNum; i <= endPageNum; i++){ %>
+					<li class="page-item <%=pageNum == i ? "active" : "" %>">
+						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+					</li>
+				<%} %>
+				
+				<%--
+					마지막 페이지 번호가 전체 페이지의 개수보다 작으면 Next 링크를 제공한다.
+				 --%>
+				<%if(endPageNum < totalPageCount){ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+					</li>
+				<%} %>
+			</ul>
+		</nav>
 	</div>
-	
 	<script>
-   
 		function deleteConfirm(num){
 			let isDelete = confirm("정말 삭제하시겠습니까?");
 			if(isDelete){
