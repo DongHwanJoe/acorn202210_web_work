@@ -46,6 +46,10 @@
 	//다운로드할 파일의 크기 읽어와서 다운로드할 파일의 크기 설정
 	response.setContentLengthLong(dto.getFileSize());
 	
+	//Exception 발생하지 않도록(response.getOutputStream() 호출 전에 해야한다)
+	out.clear();
+	out = pageContext.pushBody();
+
 	//클라이언트에게 출력할수 있는 스트림 객체 얻어오기
 	BufferedOutputStream bos=
 	   new BufferedOutputStream(response.getOutputStream());
