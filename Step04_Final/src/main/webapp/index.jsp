@@ -28,6 +28,7 @@
 			<li><a href="${pageContext.request.contextPath }/private/game.jsp">회원전용공간(게임)</a></li>
 			<li><a href="file/list.jsp">자료실</a></li>
 			<li><a href="file/blist.jsp">b자료실</a></li>
+			<li><a href="cafe/list.jsp">글목록보기</a></li>
 		</ul>
 	</div>
 </body>
