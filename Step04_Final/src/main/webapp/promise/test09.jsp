@@ -13,7 +13,7 @@
 	<script>
 		document.querySelector("#myBtn").addEventListener("click", function(){
 			//페이지 전환 없이 index.jsp 페이지로 요청하기 
-			fetch("${pageContext.request.contextPath }/index.jsp")
+			fetch("${pageContext.request.contextPath }index.jsp")
 			.then(function(response){
 				return response.text();
 			})
