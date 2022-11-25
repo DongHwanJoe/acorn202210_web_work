@@ -35,7 +35,9 @@
 					<tr class="table-secondary">
 						<td><%=tmp.getNum() %></td>
 						<td><%=tmp.getWriter() %></td>
-						<td><%=tmp.getTitle() %></td>
+						<td>
+							<a href="detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+						</td>
 						<td><%=tmp.getViewCount() %></td>
 						<td><%=tmp.getRegdate() %></td>
 					</tr>

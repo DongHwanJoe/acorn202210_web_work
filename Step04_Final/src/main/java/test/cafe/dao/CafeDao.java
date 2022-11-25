@@ -31,6 +31,49 @@ public class CafeDao {
 		return dao;
 	}
 	
+	//글 하나의 정보를 리턴해주는 메소드
+	public CafeDto getData(int num) {
+		CafeDto dto=null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			//select 문의 뼈대 구성하기
+			String sql = "SELECT writer, title, content, viewCount, regdate"
+					+ " FROM board_cafe"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 값 바인딩 할게 있으면 하기
+			pstmt.setInt(1, num);
+			//sql 문 수행하고 ResultSet 객체 얻어내기
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto=new CafeDto();
+				dto.setNum(num);
+				dto.setWriter(rs.getString("writer"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setViewCount(rs.getInt("viewCount"));
+				dto.setRegdate(rs.getString("regdate"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+				rs.close();
+				if (pstmt != null)
+				pstmt.close();
+				if (conn != null)
+				conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return dto;      
+	}
+	
 	//업로드 한 글을 DB에 저장하는 메소드
 	public boolean insert(CafeDto dto) {
 		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
