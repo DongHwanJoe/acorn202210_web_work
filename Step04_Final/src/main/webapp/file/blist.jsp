@@ -5,8 +5,11 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
-	//파일목록을 얻어와서
-	List<FileDto> list = FileDao.getInstance().getList();
+	//FileDto 객페를 생성해서
+	FileDto dto = new FileDto();
+	//위에서 계산된 startRowNum, endRowNum을 담아서
+	//파일 목록을 select 해온다.
+	List<FileDto> list = FileDao.getInstance().getList(dto);
 	//응답하기
 %>
 <!DOCTYPE html>

@@ -4,8 +4,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//글 목록 얻어오기
-	List<CafeDto> list = CafeDao.getInstance().getList();
+	String id = (String)session.getAttribute("id");
+
+	final int PAGE_ROW_COUNT = 2;
+	final int PAGE_DISPLAY_COUNT = 2;
+	
+	int pageNum = 1;
+	
+	String strPageNum = request.getParameter("pageNum");
+	if(strPageNum != null){
+		pageNum = Integer.parseInt(strPageNum);
+	}
+	
+	int startRowNum = 1 + (pageNum - 1) * PAGE_ROW_COUNT;
+	int endRowNum = pageNum * PAGE_ROW_COUNT;
+	
+	int startPageNum = 1 +((pageNum - 1) / PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+	int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	int totalRow = CafeDao.getInstance().getCount();
+	int totalPageCount = (int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+	if(endPageNum > totalPageCount){
+		endPageNum = totalPageCount;
+	}
+	
+	CafeDto dto = new CafeDto();
+	dto.setStartRowNum(startRowNum);
+	dto.setEndRowNum(endRowNum);
+	List<CafeDto> list = CafeDao.getInstance().getList(dto);
 %>    
 <!DOCTYPE html>
 <html>
@@ -18,6 +43,8 @@
 <body>
 	<div class="container">
 		<a href="${pageContext.request.contextPath }/cafe/private/insertform.jsp">새 글 작성</a>
+		<br />
+		<a href="${pageContext.request.contextPath }/index.jsp">인덱스로 가기</a>
 		<h3>카페 글 목록 입니다.</h3>
 		<table class="table">
 			<thead>
@@ -44,6 +71,27 @@
 				<%} %>
 			</tbody>
 		</table>
+		<nav>
+			<ul class="pagination">
+				<%if(startPageNum != 1){ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+					</li>
+				<%} %>
+				
+				<%for(int i = startPageNum; i <= endPageNum; i++){ %>
+					<li class="page-item <%=pageNum == i ? "active" : "" %>">
+						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+					</li>
+				<%} %>
+				
+				<%if(endPageNum < totalPageCount){ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+					</li>
+				<%} %>
+			</ul>
+		</nav>
 	</div>
 </body>
 </html>

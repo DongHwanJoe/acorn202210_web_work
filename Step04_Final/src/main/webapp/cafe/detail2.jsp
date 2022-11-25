@@ -7,10 +7,6 @@
 	int num = Integer.parseInt(request.getParameter("num"));
 	//DB에서 해당글의 정보를 얻어와서
 	CafeDto dto = CafeDao.getInstance().getData(num);
-	
-	//글 조회수도 1 증가 시킨다.
-	CafeDao.getInstance().addViewCount(num);
-	
 	//응답한다.
 %>    
 <!DOCTYPE html>
@@ -54,28 +50,10 @@
 				3. 개행기호를 찾아서  <br> 로 대체하기
 			 --%>
 			<tr>
-				<th colspa="2">
-				 <div><%=dto.getContent() %></div>
-				</th>
+				<th>내용</th>
+				<td><textarea rows="10" readonly><%=dto.getContent() %></textarea></td>
 			</tr>
 		</table>
-		<%
-			//로그인된 아이디가 있으면 읽어온다(null일 경우도 있다)
-			String id = (String)session.getAttribute("id");
-		%>
-		<%-- 만일 글 작성자가 로그인 된 아이디와 같다면 수정, 삭제 링크를 제공한다. --%>
-		<%if(dto.getWriter().equals(id)){ %>
-			<a href="private/updateform.jsp?num=<%=dto.getNum() %>">수정</a>
-			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
-			<script>
-				function deleteConfirm(){
-					const isDelete = confirm("이 글을 삭제하시겠습니까?");
-					if(isDelete){
-						location.href = "private/delete.jsp?num=<%=dto.getNum() %>";
-					}
-				}
-			</script>
-		<%} %>
 		
 		<a href="list.jsp">목록으로</a>
 	</div>
