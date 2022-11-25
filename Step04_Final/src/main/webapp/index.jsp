@@ -23,5 +23,7 @@
 			<li><a href="${pageContext.request.contextPath }/private/game.jsp">회원전용공간(게임)</a></li>
 		</ul>
 	</div>
+	
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

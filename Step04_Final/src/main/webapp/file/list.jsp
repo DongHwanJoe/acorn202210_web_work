@@ -136,7 +136,7 @@
 			</tbody>
 		</table>
 		<nav>
-			<ul class="pagination">
+			<ul class="pagination justify-content-center">
 				<%-- 
 					startPageNum이 1이 아닌 경우에만 Prev 링크를 제공한다,
 				 --%>
@@ -171,5 +171,7 @@
 			}
 		}
    </script>
+   
+   <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

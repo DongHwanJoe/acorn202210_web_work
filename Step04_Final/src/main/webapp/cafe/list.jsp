@@ -6,8 +6,8 @@
 <%
 	String id = (String)session.getAttribute("id");
 
-	final int PAGE_ROW_COUNT = 2;
-	final int PAGE_DISPLAY_COUNT = 2;
+	final int PAGE_ROW_COUNT = 5;
+	final int PAGE_DISPLAY_COUNT = 5;
 	
 	int pageNum = 1;
 	
@@ -80,7 +80,7 @@
 			</tbody>
 		</table>
 		<nav>
-			<ul class="pagination">
+			<ul class="pagination justify-content-center">
 				<%if(startPageNum != 1){ %>
 					<li class="page-item">
 						<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
@@ -101,5 +101,7 @@
 			</ul>
 		</nav>
 	</div>
+	
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
