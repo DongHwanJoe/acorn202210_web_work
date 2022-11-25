@@ -43,11 +43,13 @@ public class CafeDao {
 			//실행할 sql문의 뼈대 구성하기
 			String sql = "INSERT INTO board_cafe"
 					+ " (num, writer, title, content, viewCount, regdate)"
-					+ " VALUES(board_cafe_seq.NEXTVAL, ?, ?, ?, ?, ?, SYSDATE)";
+					+ " VALUES(board_cafe_seq.NEXTVAL, ?, ?, ?, 0, SYSDATE)";
 
 			pstmt = conn.prepareStatement(sql);
 			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
-
+			pstmt.setString(1, dto.getWriter());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
 			//INSERT or UPDATE or DELETE 문을 수행하고 수정, 삭제, 추가 된 ROW의 개수 리턴받기
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -78,7 +80,7 @@ public class CafeDao {
 			//실행할 sql문의 뼈대 구성하기
 			String sql = "SELECT num, writer, title, viewCount, regdate"
 					+ " FROM board_cafe"
-					+ " ORDER BY num ASC";
+					+ " ORDER BY num DESC";
 
 			pstmt = conn.prepareStatement(sql);
 			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
