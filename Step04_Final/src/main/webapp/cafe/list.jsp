@@ -46,9 +46,14 @@
 	</jsp:include>
 	
 	<div class="container">
-		<a href="${pageContext.request.contextPath }/cafe/private/insertform.jsp">새 글 작성</a>
-		
-		<h3>카페 글 목록 입니다.</h3>
+		<div class="row mt-1">
+			<div class="col-lg-6 col-sm-12 text-lg-start text-center">
+				<h3>카페 글 목록 입니다.</h3>
+			</div>
+			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
+				<a class="btn btn-primary text-lg-end text-center" href="${pageContext.request.contextPath }/cafe/private/insertform.jsp">새 글 작성</a>
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 				<tr class="table-dark">
