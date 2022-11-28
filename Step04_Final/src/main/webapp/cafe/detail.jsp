@@ -45,40 +45,43 @@
 	</nav>
 	<div class="container">
 		<h3>글 상세 보기</h3>
-		<table class="table table-borderless">
-			<tr>
-				<div>
-					<th>제목</th>
-					<td><%=dto.getTitle() %></td>
-				</div>
-				
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><%=dto.getWriter() %></td>
-				
-				<th class="justify-content-start">글번호</th>
-				<td><%=dto.getNum() %></td>
-				
-				<th>조회수</th>
-				<td><%=dto.getViewCount() %></td> 
-				
-				<th>작성일</th>
-				<td><%=dto.getRegdate() %></td>
-			</tr>
+		<table class="table">
+			<thead>
+				<tr>
+					<div class="container row">
+						<div class="col-1 mt-1">제목</div>
+						<div class="col-11 h4"><strong><%=dto.getTitle() %></strong></div>
+					</div>
+				</tr>
+				<tr>
+					<th class="col-1">작성자</th>
+					<td><%=dto.getWriter() %></td>
 					
-			<%--
-				textarea를 이용해서 문자열을 입력 받으면 tab기호, 공백, 개행기호도 같이 입력받는다.
-				해당 기호를 재현하는 방법
-				1. textarea에 출력하기
-				2. <pre></pre> 요소 안에 출력하기
-				3. 개행기호를 찾아서  <br> 로 대체하기
-			 --%>
-			<tr>
-				<th colspan="2">
-				 <div><%=dto.getContent() %></div>
-				</th>
-			</tr>
+					<th>글번호</th>
+					<td><%=dto.getNum() %></td>
+					
+					<th>조회수</th>
+					<td><%=dto.getViewCount() %></td> 
+					
+					<th>작성일</th>
+					<td><%=dto.getRegdate() %></td>
+				</tr>
+
+			</thead>	
+			<tbody class="table-group-divider">	
+				<%--
+					textarea를 이용해서 문자열을 입력 받으면 tab기호, 공백, 개행기호도 같이 입력받는다.
+					해당 기호를 재현하는 방법
+					1. textarea에 출력하기
+					2. <pre></pre> 요소 안에 출력하기
+					3. 개행기호를 찾아서  <br> 로 대체하기
+				 --%>
+				<tr>
+					<th colspan="8">
+					 <div><%=dto.getContent() %></div>
+					</th>
+				</tr>
+			</tbody>	
 		</table>
 		<%
 			//로그인된 아이디가 있으면 읽어온다(null일 경우도 있다)

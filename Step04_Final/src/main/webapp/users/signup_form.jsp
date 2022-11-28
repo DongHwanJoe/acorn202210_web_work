@@ -24,9 +24,11 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container">
+	<div class="d-flex justify-content-center container">
 		<h3>회원 가입 폼 입니다.</h3>
-		<form action="signup.jsp" method="post" id="signupForm"  style="justify-content: center">
+	</div>
+	<div class="d-flex justify-content-center container col-4">
+		<form action="signup.jsp" method="post" id="signupForm">
 			<div>
 				<label class="control-label" for="id">아이디</label>
 				<input class="form-control" type="text" name="id" id="id"/>
@@ -108,9 +110,6 @@
 		document.querySelector("#id").addEventListener("input", function(){
 			//input 요소의 참조값을 self에 미리 담아놓기
 			const self = this;
-			//일단 2개의 클래스를 모두 제거 한다음
-			self.classList.remove("is-valid");
-			self.classList.remove("is-invalid");
 			
 			//1. 입력한 아이디를 읽어와서
 			const inputId = self.value;
@@ -121,6 +120,10 @@
 				return response.json();
 			})
 			.then(function(data){
+				//일단 2개의 클래스를 모두 제거 한다음
+				self.classList.remove("is-valid");
+				self.classList.remove("is-invalid");
+				
 				//3. 사용가능 여부에 따라 아이디 입력란에 is-valid or is-invalid 클래스를 적절히 추가, 제거를 한다.
 				console.log(data);
 				if(data.isExist){

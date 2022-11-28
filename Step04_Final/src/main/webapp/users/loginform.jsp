@@ -34,8 +34,11 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container">
+	<div class="d-flex justify-content-center container col-4">
 		<h1>로그인 폼</h1>
+	</div>
+		
+	<div class="d-flex justify-content-center container col-4">	
 		<form action="login.jsp" method="post">
 			<!-- 로그인 성공 후 어디로 갈지에 대한 정보를 url이라는 파라미터 명으로 같이 전송한다. -->
 			<input type="hidden" name="url" value="<%=url %>"/>
