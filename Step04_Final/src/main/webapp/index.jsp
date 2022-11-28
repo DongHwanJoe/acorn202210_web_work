@@ -18,10 +18,6 @@
 	
 	<div class="container">
 		<h1>인덱스 페이지 입니다.</h1>
-		<ul>
-			<li><a href="${pageContext.request.contextPath }/private/study.jsp">회원전용공간(공부)</a></li>
-			<li><a href="${pageContext.request.contextPath }/private/game.jsp">회원전용공간(게임)</a></li>
-		</ul>
 	</div>
 	
 	<jsp:include page="/include/footer.jsp"></jsp:include>

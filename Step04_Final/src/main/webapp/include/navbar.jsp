@@ -57,23 +57,16 @@
 	               			<%} %>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link pt-0" href="${pageContext.request.contextPath }/users/private/info.jsp">
-								<strong><%=id %></strong>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link pt-1" href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a>
-						</li>
-						<li class="nav-item">
 							<div class="dropdown">
-								<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								  Dropdown link
+								<a class="nav-link pt-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								  <strong><%=id %></strong>
 								</a>
 								
 								<ul class="dropdown-menu">
-								  <li><a class="dropdown-item" href="#">Action</a></li>
-								  <li><a class="dropdown-item" href="#">Another action</a></li>
-								  <li><a class="dropdown-item" href="#">Something else here</a></li>
+								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보 수정</a></li>
+								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/private/study.jsp">공부하러 가기</a></li>
+								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/private/game.jsp">게임하러 가기</a></li>
+								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a></li>
 								</ul>
 							</div>
 						</li>
