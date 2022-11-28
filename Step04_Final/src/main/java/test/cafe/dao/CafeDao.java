@@ -31,6 +31,82 @@ public class CafeDao {
 		return dao;
 	}
 	
+	public int getMinNum() {
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT MIN(num) AS num"
+					+ " FROM board_cafe";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			if (rs.next()) {
+				count = rs.getInt("num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return count;
+	}
+	
+	public int getMaxNum() {
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT MAX(num) AS num"
+					+ " FROM board_cafe";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			if (rs.next()) {
+				count = rs.getInt("num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return count;
+	}
+	
 	public int getCount() {
 		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
 		Connection conn = null;
