@@ -26,15 +26,22 @@
 </style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-info">
+		<div class="container">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="https://acornedu.co.kr/images/n_logo.png" alt="" width="200" height="50" class="d-inline-block align-text-center">
+			</a>
+			<div class="container mt-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+					</li>
+					<li class="breadcrumb-item active">회원정보</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
-		<nav class="mt-2">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
-				</li>
-				<li class="breadcrumb-item active">회원정보</li>
-			</ol>
-		</nav>
 		<h1>가입 정보 입니다.</h1>
 		<table>
 			<tr>

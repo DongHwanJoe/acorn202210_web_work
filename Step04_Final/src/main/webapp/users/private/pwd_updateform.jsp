@@ -9,18 +9,25 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="container">
-		<nav class="mt-2">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
-				</li>
-				<li class="breadcrumb-item">
+	<nav class="navbar navbar-expand-md navbar-dark bg-info">
+		<div class="container">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="https://acornedu.co.kr/images/n_logo.png" alt="" width="200" height="50" class="d-inline-block align-text-center">
+			</a>
+			<div class="container mt-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+					</li>
+					<li class="breadcrumb-item">
 					<a href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보</a>
-				</li>
-				<li class="breadcrumb-item active">비밀번호 수정</li>
-			</ol>
-		</nav>
+					</li>
+					<li class="breadcrumb-item active">비밀번호 수정</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
 		<h1>비밀번호 수정 폼</h1>
 		<form action="pwd_update.jsp" method="post" id="myForm">
 			<div class="mb-2">

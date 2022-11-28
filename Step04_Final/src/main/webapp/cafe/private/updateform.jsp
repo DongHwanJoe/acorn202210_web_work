@@ -23,6 +23,27 @@
 </style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-info">
+		<div class="container">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="https://acornedu.co.kr/images/n_logo.png" alt="" width="200" height="50" class="d-inline-block align-text-center">
+			</a>
+			<div class="container mt-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/cafe/list.jsp">글 목록</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/cafe/detail.jsp?num=<%=num %>">"<%=dto.getTitle() %>"</a>
+					</li>
+					<li class="breadcrumb-item active">글 수정하기</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
 		<h3>글 수정 폼입니다.</h3>
 		<form action="update.jsp" method="post">
