@@ -10,6 +10,17 @@
 </head>
 <body>
 	<div class="container">
+		<nav class="mt-2">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보</a>
+				</li>
+				<li class="breadcrumb-item active">비밀번호 수정</li>
+			</ol>
+		</nav>
 		<h1>비밀번호 수정 폼</h1>
 		<form action="pwd_update.jsp" method="post" id="myForm">
 			<div class="mb-2">

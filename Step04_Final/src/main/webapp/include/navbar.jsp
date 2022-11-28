@@ -63,7 +63,7 @@
 								</a>
 								
 								<ul class="dropdown-menu">
-								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보 수정</a></li>
+								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보</a></li>
 								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/private/study.jsp">공부하러 가기</a></li>
 								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/private/game.jsp">게임하러 가기</a></li>
 								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a></li>

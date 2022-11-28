@@ -20,6 +20,14 @@
 </head>
 <body>
 	<div class="container">
+		<nav class="mt-2">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+				</li>
+				<li class="breadcrumb-item active">로그인</li>
+			</ol>
+		</nav>
 		<h1>로그인 폼</h1>
 		<form action="login.jsp" method="post">
 			<!-- 로그인 성공 후 어디로 갈지에 대한 정보를 url이라는 파라미터 명으로 같이 전송한다. -->

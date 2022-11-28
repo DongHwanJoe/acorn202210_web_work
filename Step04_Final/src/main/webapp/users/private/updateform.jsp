@@ -30,6 +30,17 @@
 </head>
 <body>
 	<div class="container">
+		<nav class="mt-2">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보</a>
+				</li>
+				<li class="breadcrumb-item active">회원정보 수정</li>
+			</ol>
+		</nav>
 		<h3>회원가입 수정 폼 입니다.</h3>
 
 		<a id="profileLink" href="javascript:">
@@ -54,9 +65,10 @@
 				<label for="email">이메일</label>
 				<input type="text" id="email" name="email" value="<%=dto.getEmail() %>"/>
 			</div>
-			<button type="submit">수정확인</button>
-			<button type="reset">취소</button>
+			<button class="btn btn-primary" type="submit">수정확인</button>
+			<button class="btn btn-info" type="reset">리셋</button>
 		</form>
+		<a class="btn btn-danger" href="info.jsp">취소</a>
 		
 		<form id="imageForm" action="profile_upload.jsp" method="post" enctype="multipart/form-data">
 			프로필 사진
