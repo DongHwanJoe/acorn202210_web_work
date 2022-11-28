@@ -36,15 +36,15 @@
 	<div class="container">
 		<h3>새 글 작성 폼입니다.</h3>
 		<form action="insert.jsp" method="post">
-			<div>
-				<label for="title">제목</label>
-				<input type="text" name="title" id="title" />
+			<div class="col-3">
+				<label class="form-label" for="title">제목</label>
+				<input class="form-control" type="text" name="title" id="title" />
 			</div>
 			<div>
-				<label for="content">내용</label>
+				<label class="form-label" for="content">내용</label>
 				<textarea name="content" id="content" rows="10"></textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this)">저장</button>
+			<button class="btn btn-primary" type="submit" onclick="submitContents(this)">저장</button>
 		</form>
 	</div>
 	

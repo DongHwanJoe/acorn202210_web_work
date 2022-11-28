@@ -19,15 +19,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-info">
+		<div class="container">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="https://acornedu.co.kr/images/n_logo.png" alt="" width="200" height="50" class="d-inline-block align-text-center">
+			</a>
+			<div class="container mt-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+					</li>
+					<li class="breadcrumb-item active">로그인</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
-		<nav class="mt-2">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
-				</li>
-				<li class="breadcrumb-item active">로그인</li>
-			</ol>
-		</nav>
 		<h1>로그인 폼</h1>
 		<form action="login.jsp" method="post">
 			<!-- 로그인 성공 후 어디로 갈지에 대한 정보를 url이라는 파라미터 명으로 같이 전송한다. -->

@@ -45,28 +45,28 @@
 	</nav>
 	<div class="container">
 		<h3>글 상세 보기</h3>
-		<table>
+		<table class="table table-borderless">
 			<tr>
-				<th>글번호</th>
-				<td><%=dto.getNum() %></td>
+				<div>
+					<th>제목</th>
+					<td><%=dto.getTitle() %></td>
+				</div>
+				
 			</tr>
 			<tr>
 				<th>작성자</th>
 				<td><%=dto.getWriter() %></td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td><%=dto.getTitle() %></td>
-			</tr>
-			<tr>
+				
+				<th class="justify-content-start">글번호</th>
+				<td><%=dto.getNum() %></td>
+				
 				<th>조회수</th>
-				<td><%=dto.getViewCount() %></td>   
-			</tr>
-			<tr>
+				<td><%=dto.getViewCount() %></td> 
+				
 				<th>작성일</th>
 				<td><%=dto.getRegdate() %></td>
 			</tr>
-			
+					
 			<%--
 				textarea를 이용해서 문자열을 입력 받으면 tab기호, 공백, 개행기호도 같이 입력받는다.
 				해당 기호를 재현하는 방법
@@ -75,7 +75,7 @@
 				3. 개행기호를 찾아서  <br> 로 대체하기
 			 --%>
 			<tr>
-				<th colspa="2">
+				<th colspan="2">
 				 <div><%=dto.getContent() %></div>
 				</th>
 			</tr>

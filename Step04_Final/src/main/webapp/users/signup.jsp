@@ -38,13 +38,13 @@
 				<br />
 				<a class="alert-link" href="loginform.jsp">로그인</a>
 				<br />
-				<a class="alert-link" href="singup_form.jsp">다른 회원정보 추가</a>
+				<a class="alert-link" href="signup_form.jsp">다른 회원정보 추가</a>
 			</p>
 		<%}else{ %>
 			<p class="alert alert-danger">
 				회원가입 실패
 				<br />
-				<a class="alert-link" href="singup_form.jsp">다시 가입하기</a>
+				<a class="alert-link" href="signup_form.jsp">다시 가입하기</a>
 			</p>
 		<%} %>
 	</div>

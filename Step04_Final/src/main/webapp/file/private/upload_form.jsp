@@ -39,15 +39,15 @@
 			  MultipartRequest 객체를 이용해서 추출해야 한다.
 		 -->
 		 <form action="upload.jsp" method="post" enctype="multipart/form-data">
-		 	<div>
-		 		<label for="title">제목</label>
-		 		<input type="text" name="title" id="title" />
+		 	<div class="col-3">
+		 		<label class="form-label" for="title">제목</label>
+		 		<input class="form-control" type="text" name="title" id="title" />
 		 	</div>
-		 	<div>
-		 		<label for="myFile">첨부파일</label>
-		 		<input type="file" name="myFile" id="myFile" />
+		 	<div class="col-3 mt-2">
+		 		<label for="myFile" class="form-label">첨부파일</label>
+		 		<input class="form-control" type="file" name="myFile" id="myFile" />
 		 	</div>
-		 	<button type="submit">업로드</button>
+		 	<button class="btn btn-primary mt-2" type="submit">업로드</button>
 		 </form>
 	</div>
 </body>
