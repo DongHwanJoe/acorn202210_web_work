@@ -47,24 +47,24 @@
 		<h3>글 상세 보기</h3>
 		<table class="table">
 			<thead>
+				<div class="container row">
+					<div class="col-1 mt-1">제목</div>
+					<div class="col-11 h4"><strong><%=dto.getTitle() %></strong></div>
+				</div>
 				<tr>
-					<div class="container row">
-						<div class="col-1 mt-1">제목</div>
-						<div class="col-11 h4"><strong><%=dto.getTitle() %></strong></div>
+					<div class="d-flex justify-content-start container row">
+						<th class="col-1">작성자</th>
+						<td><%=dto.getWriter() %></td>
+						
+						<th>글번호</th>
+						<td><%=dto.getNum() %></td>
+						
+						<th>조회수</th>
+						<td><%=dto.getViewCount() %></td> 
+						
+						<th>작성일</th>
+						<td><%=dto.getRegdate() %></td>
 					</div>
-				</tr>
-				<tr>
-					<th class="col-1">작성자</th>
-					<td><%=dto.getWriter() %></td>
-					
-					<th>글번호</th>
-					<td><%=dto.getNum() %></td>
-					
-					<th>조회수</th>
-					<td><%=dto.getViewCount() %></td> 
-					
-					<th>작성일</th>
-					<td><%=dto.getRegdate() %></td>
 				</tr>
 
 			</thead>	
