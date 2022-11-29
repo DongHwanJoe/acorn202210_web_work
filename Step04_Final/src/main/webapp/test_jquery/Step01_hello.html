@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step01_hello.html</title>
+</head>
+<body>
+<p>p1</p>
+<p class="my-class">p2</p>
+<p class="my-class">p3</p>
+<p class="my-class">p4</p>
+<p id="one">p5</p>
+<!-- jquery 로딩하기 -->
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    $("p").text("김구라");
+
+    $("p")[0].innerText="해골";
+
+    $(".my-class").css("color","red");
+
+    $("#one").css("background-color","yellow");
+    
+</script> 
+</body>
+</html>

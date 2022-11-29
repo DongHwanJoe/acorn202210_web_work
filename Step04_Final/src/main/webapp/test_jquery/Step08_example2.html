@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step08_example2.html</title>
+</head>
+<body>
+<input type="text" id="inputNum" placeholder="숫자만 입력..."/>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    var str="abcd1234efgh5678";
+
+    /*
+        문자열.replace(/정규표현식/g, "교체할 문자열")
+
+        [0-9] => [\d]
+        [^0-9] => [\D]
+    */
+
+    $("#inputNum").on("input", function(){
+        var str=$(this).val();
+        //숫자가 아닌 문자는 빈 문자로 바꿔서 제거되게 한다.
+        var result=str.replace(/[^0-9]/g,"");
+        //숫자가 제거된 문자열을 다시 value 값으로 넣어준다.
+        $(this).val(result);
+    });
+</script>    
+</body>
+</html>

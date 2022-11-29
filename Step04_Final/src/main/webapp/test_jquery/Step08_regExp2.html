@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step08_regExp2.html</title>
+</head>
+<body>
+<button id="extractBtn">추출하기</button>
+<ul>
+
+</ul>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    var str="My name is kimgura!";
+    //공백이 아닌 연속된 문자열을 찾아내는 정규표현식 객체
+    var reg=/[^ ]+/g;
+
+    $("#extractBtn").click(function(){
+        while(true){
+            //정규표현식에 매칭되는 문자열을 얻어낸다.
+            var result=reg.exec(str);
+            //매칭되는 문자열이 더이상 없으면 null 을 리턴한다.
+            if(result==null)break;
+            //li 요소를 동적으로 만들어서 text 출력하고 ul 에 추가
+            $("<li/>").text(result).appendTo("ul");
+        }
+    });
+</script>    
+</body>
+</html>

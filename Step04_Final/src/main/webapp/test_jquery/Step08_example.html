@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step08_example.html</title>
+</head>
+<body>
+<form action="signup" method="post" id="signupForm">
+    <label for="id">아이디</label>
+    <input type="text" name="id" id="id"/><br/>
+    <label for="pwd">비밀번호</label>
+    <input type="text" name="pwd" id="pwd"/><br/>
+    <label for="phone">전화번호</label>
+    <input type="text" name="phone" id="phone" placeholder="010-1234-5678"><br/>
+    <button type="submit">가입</button>
+</form>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    /*
+        [ 검증조건 ]
+        아이디 : 영문자로 시작, 특수문자 허용하지 않음, 최소 5글자, 최대 10글자
+        비밀번호 : 특수문자 1개 , 대문자 1개 반드시 포함, 8글자 이상  
+
+        [a-zA-Z0-9] => [/w]
+        [^a-zA-Z0-9] => [/W]
+    */
+
+    var idReg=/^[a-zA-Z][a-zA-Z0-9]{4,9}$/;
+
+    var pwdReg1=/[/W]+/;  //특수문자 포함 여부를 검증할 정규식
+    var pwdReg2=/[A-Z]+/; //영문자 대문자 포함여부를 검증할 정규식
+    var pwdReg3=/^.{8,}$/; //최소 8글자 이상인지 여부를 검증할 정규식 
+
+    //핸드폰 번호를 검증할 정규표현식 
+    var phoneReg=/^01[016789]-[0-9]{3,4}-[0-9]{4}$/;
+
+    /*
+        폼에 회원가입 정보를 입력하고 가입 버튼을 눌렀을때 위의 정규표현식
+        객체로 입력한 필드를 검사해서 매칭이 안된다면 매칭이 안되는 이유를
+        alert() 창으로 출력하고 폼 전송을 막아 보세요.
+    */
+    $("#signupForm").on("submit", function(){
+        //입력한 아이디
+        var id=$("#id").val();
+        if(!idReg.test(id)){
+            alert("아이디를 영문자로 시작, \
+            특수문자 허용하지 않음, 최소 5글자, 최대 10글자, 입력하세요!");
+            return false; //폼 전송 막기 
+        }
+        //입력한 비밀번호
+        var pwd=$("#pwd").val();
+        if(!pwdReg1.test(pwd)){
+            alert("비밀번호에 특수문자를 1개이상 포함 시키세요");
+            return false;
+        }
+        if(!pwdReg2.test(pwd)){
+            alert("비밀번호에 영문자 대문자를 1개이상 포함 시키세요.");
+            return false;
+        }
+        if(!pwdReg3.test(pwd)){
+            alert("비밀번호를 8글자 이상 입력하세요.");
+            return false;
+        }
+        //입력한 전화번호
+        var phone=$("#phone").val();
+        if(!phoneReg.test(phone)){
+            alert("전화번호를 형식에 맞게 입력하세요.");
+            return false;
+        }
+    });
+</script>    
+</body>
+</html>

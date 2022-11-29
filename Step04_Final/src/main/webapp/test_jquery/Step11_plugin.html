@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step11_plugin.html</title>
+</head>
+<body>
+<p>p1</p>
+<p id="one">p2</p>
+<p>p3</p>
+<!-- jquery 로딩하기 -->
+<script src="js/jquery-3.4.1.js"></script>
+<!-- jquery plugin js 로딩하기 -->
+<script src="js/jquery.gura.js"></script>
+<script>
+    // plugin 기능 .gura() 사용하기 
+    $("#one").gura({
+        msg:"안녕하세요",
+        color:"#ff00ff"
+    });
+</script>
+</body>
+</html>

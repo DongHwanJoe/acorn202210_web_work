@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step05_effect3.html</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<button id="hideBtn">숨기기</button>
+<button id="showBtn">보이기</button>
+<button id="toggleBtn">토글</button>
+<div class="box"></div>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    //숨기기 버튼을 눌렀을때 div 를 숨겨 보세요.
+    $("#hideBtn").on("click", function(){
+       $(".box").fadeOut(1000, function(){
+           alert("뿅~");
+       });
+    });
+
+    //보이기 버튼을 눌렀을때 
+    $("#showBtn").click(function(){
+       $(".box").fadeIn({
+           duration: 500,
+           complete: function(){
+            alert("짠!");
+           }
+       });
+    });
+
+    //토글 버튼을 눌렀을때
+    $("#toggleBtn").click(function(){
+       $(".box").fadeToggle();
+    });
+</script>    
+</body>
+</html>

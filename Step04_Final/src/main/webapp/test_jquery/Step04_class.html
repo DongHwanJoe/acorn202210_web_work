@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step04_class.html</title>
+    <style>
+        .change{
+            color:red;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<p id="one">test!</p>
+<p id="two">test!</p>   
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    $("#one").on("mouseover", function(){
+        $(this)
+        .css("color","red")
+        .css("font-weight","bold")
+        .css("font-size","20px");
+    });
+
+    $("#one").on("mouseout", function(){
+        $(this)
+        .css("color","black")
+        .css("font-weight","normal")
+        .css("font-size","16px");
+    });
+
+    //위와 동일한 기능을 class 를 활용해서 구현하기
+    $("#two").on("mouseover", function(){
+        $(this).addClass("change");
+    });
+
+    $("#two").on("mouseout", function(){
+        $(this).removeClass("change");
+    });    
+</script> 
+</body>
+</html>

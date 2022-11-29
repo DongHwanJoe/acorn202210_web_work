@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step07_form2.html</title>
+</head>
+<body>
+<form action="signup" method="post" id="signupForm">
+    <label for="email">이메일</label>
+    <input type="text" name="email" id="email"/>
+    <br/>
+    <label for="pwd">비밀번호</label>
+    <input type="text" name="pwd" id="pwd"/>
+    <br/>
+    <label for="pwd2">비밀번호 확인</label>
+    <input type="text" name="pwd2" id="pwd2"/>
+    <br/>
+    <button type="submit">가입</button>
+</form> 
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    /*
+        폼의 검증조건
+        1. 이메일 주소는 반드시 입력해야한다. 
+        2. 비밀번호는 반드시 입력해야한다.
+        3. 비밀번호와 비밀번호 확인은 입력한 문자열이 동일해야한다.
+
+        위의 3개중 하나라도 만족하지 못하면 
+        폼의 제출을 막는다.
+    */
+    $("#signupForm").on("submit", function(){
+        //1. 이메일 주소를 입력했는지?
+        var email=$("#email").val();
+        if(email==""){
+            alert("이메일 주소를 입력하세요.");
+            $("#email").focus();//포커스 주기 
+            return false; //폼전송 막기 
+        }
+        //2. 비밀번호를 입력했는지?
+        var pwd=$("#pwd").val();
+        if(pwd==""){
+            alert("비밀번호를 입력하세요.");
+            $("#pwd").focus();
+            return false;
+        }
+        //3. 두 비밀번호가 일치 하는지?
+        var pwd2=$("#pwd2").val();
+        if(pwd != pwd2){
+            alert("비밀번호를 확인하세요.");
+            $("#pwd").focus();
+            return false;
+        }
+    });
+</script>   
+</body>
+</html>

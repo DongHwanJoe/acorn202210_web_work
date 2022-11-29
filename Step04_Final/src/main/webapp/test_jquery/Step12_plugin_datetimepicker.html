@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step12_plugin_datetimepicker</title>
+    <link rel="stylesheet" href="css/jquery.datetimepicker.min.css">
+</head>
+<body>
+<h3>날짜 시간 선택</h3>    
+<input type="text" id="one"/>
+<h3>날짜 선택</h3>
+<input type="text" id="two"/>
+<h3>시간 선택</h3>
+<input type="text" id="three"/>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/jquery.datetimepicker.full.min.js"></script>
+<script>
+    //언어
+    $.datetimepicker.setLocale("ko");
+
+    //플러그인 동작 시키기 
+    $("#one").datetimepicker();
+
+    $("#two").datetimepicker({
+        timepicker:false,
+        format:"Y.m.d"
+    });
+
+    $("#three").datetimepicker({
+        datepicker:false,
+        format:"H:i"
+    });
+</script>
+</body>
+</html>

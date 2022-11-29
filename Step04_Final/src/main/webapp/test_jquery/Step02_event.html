@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step02_event.html</title>
+</head>
+<body>
+<input type="text" id="inputMsg" placeholder="메세지입력..."/>    
+<button id="one">눌러보셈</button>
+<p id="result"></p>
+<ul id="msgList">
+    <li>하나</li>
+    <li>두울</li>
+</ul>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+
+    // document.querySelector("#one")
+    // .addEventListener("click", function(){
+    //     var msg=document.querySelector("#inputMsg").value;
+    //     document.querySelector("#result").value=msg;
+    //     document.querySelector("#inputMsg").value="";
+    // });oli999
+    
+    //아이디가 one 인 요소에 click 이벤트가 일어났을때 실행할 함수 등록
+    $("#one").on("click", function(){
+        //아이디가 inputMsg 인 곳에 입력한 value 값을 읽어와서 
+        var msg=$("#inputMsg").val();
+        //아이디가 result 인 요소의 innerText 로 넣어주기 
+        $("#result").text(msg);
+        $("#inputMsg").val("");
+    });
+
+    $("#inputMsg").on("keydown", function(event){
+        console.log(event);
+        if(event.keyCode == 13){//만일 엔터키를 눌렀다면 
+            //아이디가 inputMsg 인 곳에 입력한 value 값을 읽어와서 
+            var msg=$("#inputMsg").val();
+            //아이디가 result 인 요소의 innerText 로 넣어주기 
+            $("#result").text(msg);
+            $("#inputMsg").val("");
+            //li 요소를 만들어서 
+            $("<li></li>").text(msg).appendTo("#msgList");
+        }
+    });
+
+    //input 요소에 focus 주기
+    $("#inputMsg").focus();
+
+</script>    
+</body>
+</html>

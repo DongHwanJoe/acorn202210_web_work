@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step07_form.html</title>
+</head>
+<body>
+<form action="signup" method="post" id="myForm">
+    <input type="text" id="inputName"/>
+    <br/>
+    <select id="selectFruit">
+        <option value="orange" selected>오렌지</option>
+        <option value="apple">애플</option>
+        <option value="banana">바나나</option>
+    </select>
+    <br/>
+    <label>
+        <input type="radio" name="gender" id="man"/> 남자
+    </label>
+    <label> 
+        <input type="radio" name="gender" id="woman" /> 여자
+    </label>
+    <br/>
+    <button type="submit">전송</button>
+</form>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    //페이지 로딩 시점에 테스트로 동작해보기
+    $("#inputName").val("김구라");
+    /*  
+        .prop("checked")  체크 여부 읽어오기
+        .prop("checked", true) 강제 체크하기
+        .prop("checked", false) 강제 체크 해제하기 
+    */
+    $("#man").prop("checked", true);
+
+    //select 의 option 을 강제 선택하게 하기 
+    $("#selectFruit").val("banana");
+
+    //폼에 submit 이벤트가 일어났을때 호출되는 함수 등록
+    $("#myForm").on("submit", function(){
+        //value 값 읽어오기 테스트
+        var inputName=$("#inputName").val();
+        var selectFruit=$("#selectFruit").val();
+
+        alert("sumbit 이벤트 발생!");
+    });
+</script>    
+</body>
+</html>

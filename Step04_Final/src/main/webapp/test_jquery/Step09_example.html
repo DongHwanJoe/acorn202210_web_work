@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step09_example.html</title>
+    <style>
+        #msgList li:hover{
+            background-color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="inputMsg"/>
+<button id="sendBtn">전송</button>
+<ul id="msgList">
+    <li>하나</li>
+    <li>두울</li>
+</ul>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    // #msgList li 를 클릭하면 클릭한 li 요소 제거하기 
+    // $("#msgList li").on("click", function(){
+    //     $(this).remove();
+    // });
+    
+    // 현재 존재하거나 미래에 추가될 요소에 대해서 이벤트 걸어주기
+    // .on(이벤트명, 선택자, 호출될 함수)
+    $(document).on("click", "#msgList li", function(){
+        $(this).remove();
+    });
+
+    //버튼을 클릭하면 입력한 문자열을 li 요소로 출력하기 
+    $("#sendBtn").click(function(){
+        var msg=$("#inputMsg").val();
+        $("<li/>")
+        .text(msg)
+        .appendTo("#msgList");
+    });
+
+</script>    
+</body>
+</html>

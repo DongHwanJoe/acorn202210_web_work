@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step10_event.html</title>
+    <style>
+        p:hover{
+            background-color: yellow;
+            cursor: pointer;
+        }
+    </style>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+
+        //문서 로딩이 완료 되었을때 호출되는 함수 등록
+        // $(document).ready(function(){
+        //     $("p").click(function(){
+        //         alert($(this).text());
+        //     });     
+        // });
+
+        //위의 코드는 아래와 같이 작성해도 된다.
+        $(function(){
+            $("p").click(function(){
+                alert($(this).text());
+            }); 
+        });
+    </script>
+</head>
+<body>
+<p>p1</p>
+<p>p2</p>
+<p>p3</p>    
+</body>
+</html>

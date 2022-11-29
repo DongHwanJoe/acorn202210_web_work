@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step08_regExp.html</title>
+</head>
+<body>
+<input type="text" id="inputMsg" placeholder="영문자 소문자만 입력..."/>
+<p id="console"></p>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    //영문자 소문자로만 이루어져 있는지를 검증할 정규 표현식 객체 
+    var reg=/^[a-z]+$/;
+
+    // input 요소에 무언가 입력했을때 실행할 함수 등록 
+    $("#inputMsg").on("input", function(){
+        //입력한 문자열을 읽어와서 
+        var msg=$(this).val();
+        //영문자 소문자로만 이루어져 있는지 여부 알아내기 
+        var isLowerCase=reg.test(msg);
+        //p 요소에 출력하기 
+        $("#console").text(isLowerCase);
+        if(isLowerCase){
+            $(this).css("color","#00ff00");
+        }else{
+            $(this).css("color","#ff0000");
+        }
+    });
+</script>    
+</body>
+</html>

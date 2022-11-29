@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step09_example2.html</title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>김구라</td>
+            <td>노량진</td>
+        </tr>
+    </tbody>
+</table> 
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+
+    var td1=$("<td/>").text(1);
+    var td2=$("<td/>").text("김구라");
+    var td3=$("<td/>").text("노량진");
+
+    $("<tr/>")
+    .append(td1)
+    .append(td2)
+    .append(td3)
+    .appendTo("tbody");
+
+</script>   
+</body>
+</html>

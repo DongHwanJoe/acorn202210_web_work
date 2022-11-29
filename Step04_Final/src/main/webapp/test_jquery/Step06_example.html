@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step06_example.html</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<button id="moveBtn">move</button> 
+<button id="moveBtn2">move2</button>   
+<div class="box"></div>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    /*
+        move 버튼을 누르면 box div 가 우측으로 100px 씩 
+        움직이도록 해 보세요.
+        단, 움직이는 중간 과정이 보여야 됩니다.
+    */
+
+    var mLeft=0;
+
+    $("#moveBtn").click(function(){
+
+        mLeft += 100;
+
+        $(".box").animate({
+            marginLeft:mLeft+"px"
+        });
+    });
+
+    $("#moveBtn2").click(function(){
+        $(".box").animate({
+            marginLeft:"+=100px"
+        });
+    });
+</script>    
+</body>
+</html>

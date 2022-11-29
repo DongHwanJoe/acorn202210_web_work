@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step06_animate.html</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            background-color: yellow;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>  
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    //.box 를 클릭하면 크기가 width 와 height 가 200px 이 되도록 해보세요.
+    // 단 순간적으로 변하는게 아니고 1초동안 서서히 200px 이 되게 하세요.
+    // jquery 의 .animate() 동작을 검색해서 활용해 보세요.
+    $(".box").click(function(){
+        /*
+            .animate(css property, duration, complete function)
+        */
+
+        $(this).animate({
+            width:"200px",
+            height:"200px",
+            borderWidth:"10px"
+        }, 1000, function(){
+            alert("2배가 되었네요?");
+        });
+    });
+
+</script>  
+</body>
+</html>

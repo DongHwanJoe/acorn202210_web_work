@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step09_MakeElement.html</title>
+    <style>
+        .my-image{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<ul id="msgList">
+
+</ul>
+<div id="imgPanel">
+    
+</div>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    var msgs=["하나", "두울", "세엣"];
+
+    for(var i=0; i<msgs.length; i++){
+        $("<li/>").text(msgs[i]).appendTo("#msgList");
+    }
+
+    var imgs=["images/image1.png",
+    "images/image2.png","images/image3.png"];
+
+    //배열에 있는 내용을 이용해서 img 요소를 만들어서
+    // #imgPanel 에 추가 해보세요.
+    for(var i=0; i<imgs.length; i++){
+        $("<img/>")
+        .attr("src", imgs[i])
+        .addClass("my-image")
+        .appendTo("#imgPanel");
+    }
+
+
+</script>    
+</body>
+</html>

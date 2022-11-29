@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step09_example4.html</title>
+	<style>
+        .spacer{
+            height: 500px;
+            background-color: #999;
+            border: 1px solid green;
+        }
+        .console{
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .console p{
+            background-color: #000;
+            color: #fff;
+            font-size: 25px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="console">
+    <p id="sTop"></p>
+    <p id="wHeight"></p>
+    <p id="dHeight"></p>
+</div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<script src="js/jquery-3.4.1.js"></script>
+<script>
+    //scroll 이벤트 처리 
+    $(window).on("scroll", function(){
+        console.log("scroll!");
+        //위쪽으로 스트롤된 길이
+        var scrollTop=$(window).scrollTop();
+        //window 의 높이
+        var windowHeight=$(window).height();
+        //document 의 높이
+        var documentHeight=$(document).height();
+
+		//출력해 보기 
+		$("#sTop").text("scrollTop:"+scrollTop);
+		$("#wHeight").text("windowHeight:"+windowHeight);
+		$("#dHeight").text("documentHeight:"+documentHeight);
+
+        //바닥까지 스크롤했는지 여부
+        var isBottom = scrollTop+windowHeight == documentHeight;
+
+        if(isBottom){
+            $("<div/>")
+            .text("추가된 div 입니다.")
+            .addClass("spacer")
+            .appendTo("body")
+            .hide()
+            .fadeIn(1000);
+        }
+    });
+</script>	    
+</body>
+</html>
