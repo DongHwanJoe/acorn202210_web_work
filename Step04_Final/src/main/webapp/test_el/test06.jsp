@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//클라이언트에게 쿠키를 응답하기 위해서 Cookie 객체를 생성한다
+	//new Cookie(key, value)
 	Cookie cook=new Cookie("savedId", "kimgura");
+	//쿠키 유지시간(초단위)
 	cook.setMaxAge(60);
+	//HttpServletResponse 객체에 addCookie() 메소드를 호출하면서 Cookie 객체를 전달하면
+	//클라이언트에게 응답할 때 자동으로 쿠키도 응답된다.
 	response.addCookie(cook);
 %>    
 <!DOCTYPE html>
