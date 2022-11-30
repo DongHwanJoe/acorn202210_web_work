@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_event.html</title>
+</head>
+<body>
+    <h1>이벤트 테스트</h1>
+    <div id="app">
+        <!--
+            v-on:이벤트명="methods object 에 있는 호출될 함수명"
+        -->
+        <button v-on:click="clicked">눌러보셈</button> 
+                              <!-- ㄴ> 호출 시 전달해줄 인자가 있다면 (인자) 를 추가 --> 
+        <p>{{msg}}</p>
+    </div>
+    <div>
+    	<button onclick="clicked()">눌러보셈2</button>
+    	<p id="one"></p>
+    </div>
+    <script>
+    	//msg라는 변수를 만들고 초기값을 지정
+    	let msg="";
+    	//mgs변수 안에 있는 값을 id가 one인 요소의 innerText로 출력한다.(빈 문자열이기 때문에 출력되지 않음)
+    	document.querySelector("#one").innerText = msg;
+    	//버튼을 누르면 호출되는 함수
+    	function clicked(){
+    		//msg변수안에 있는 값을 바꾼다.
+    		msg = "버튼을 눌렀네?";
+    		//p요소의 innerText를 갱신하기 위해선 아래의 작업이 한 번 더 필요하다.
+    		document.querySelector("#one").innerText = msg;
+    	}
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let app=new Vue({
+            el:"#app",
+            data:{
+                msg:""
+            },
+            methods:{
+                clicked:function(){
+                    console.log("버튼을 눌렀네요?");
+                    //data object 안에있는 msg 참조 
+                    this.msg="버튼을 눌렀네요?";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
