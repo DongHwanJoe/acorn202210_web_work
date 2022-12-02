@@ -24,9 +24,9 @@
 				<img src="https://img.freepik.com/premium-vector/flat-icon-with-file-exchange-flat-digital-vector-illustration-cloud-storage-icon-data-storage_100456-7438.jpg?w=740" class="card-img-top" alt="파일목록">
 				
 				<div class="card-body">
-					<h5 class="card-title">파일 목록</h5>
-					<p class="card-text">파일 업로드 및 다운로드를 할 수 있는 공간이에요</p>
-					<a href="${pageContext.request.contextPath }/file/list.jsp" class="btn btn-primary">파일목록 보러가기</a>
+					<h5 class="card-title">임시</h5>
+					<p class="card-text">임시</p>
+					<a href="${pageContext.request.contextPath }/food/list.jsp" class="btn btn-primary">임시</a>
 				</div>
 			</div>
 			

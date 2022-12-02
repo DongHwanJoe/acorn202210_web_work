@@ -3,44 +3,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	int num = Integer.parseInt(request.getParameter("num"));
 	String title = request.getParameter("title");
-	String content = request.getParameter("content");
 	String divfood = request.getParameter("divfood");
+	String content = request.getParameter("content");
 	String image = request.getParameter("thumbnail");
-	String writer = (String)session.getAttribute("id");
 	
 	FoodDto dto = new FoodDto();
+	dto.setNum(num);
 	dto.setTitle(title);
-	dto.setContent(content);
-	dto.setWriter(writer);
 	dto.setDivfood(divfood);
+	dto.setContent(content);
 	
 	if(!image.equals("empty")){
 		dto.setImage(image);
 	}
 	
-	//DB에 저장하기
-	boolean isSuccess = FoodDao.getInstance().insert(dto);
+	boolean isSuccess = FoodDao.getInstance().update(dto);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/food/private/insert.jsp</title>
+<title>/food/private/update.jsp</title>
 </head>
 <body>
-	<div class="container">
+	<script>
 		<%if(isSuccess){ %>
-			<p>
-				새 가게를 등록했습니다.
-				<a href="${pageContext.request.contextPath }/food/list.jsp">확인</a>
-			</p>
-		<%}else{ %>
-			<p>
-				등록에 실패했습니다.
-				<a href="insertform.jsp">다시 작성하기</a>
-			</p>
+			alert("수정했습니다.")
+			location.href = "${pageContext.request.contextPath }/food/detail.jsp?num="+<%=num %>;
+		<%}else{%>
+			alert("수정실패")
+			location.href = "updateform.jsp?num="+<%=num %>;
 		<%} %>
-	</div>
+	</script>
 </body>
 </html>

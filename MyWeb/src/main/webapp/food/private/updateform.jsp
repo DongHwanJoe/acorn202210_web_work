@@ -1,10 +1,18 @@
+<%@page import="food.dto.FoodDto"%>
+<%@page import="food.dao.FoodDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String writer = (String)session.getAttribute("id");
+	
+	int num = Integer.parseInt(request.getParameter("num"));
+	FoodDto dto = FoodDao.getInstance().getData(num);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/food/private/insertform.jsp</title>
+<title>/food/private/updateform.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <style>
@@ -12,36 +20,43 @@
 		width: 768px;
 		height: 300px;
 	}
-	
 	#imageForm{
-		display: none;
+	   display: none;
+	}
+	#thumbnailImage{
+	   border: 1px solid #cecece;
 	}
 </style>
 </head>
 <body>
 	<div class="container">
-		<h3>새 글 작성 폼입니다.</h3>
+		<h3>수정 폼</h3>
 		
 		<a id="thumbnailLink" href="javascript:">
-			<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
-			  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-			  <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-			</svg>
+			<%if(dto.getImage() == null){%>
+				<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+				  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+				  <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+				</svg>
+			<%}else{ %>
+				<img id="thumbnailImage" src="${pageContext.request.contextPath }<%=dto.getImage()%>">
+			<%} %>
 		</a>
 		
-		<form action="insert.jsp" method="post">
+		<form action="update.jsp" method="post">
 			<input type="hidden" name="thumbnail" id="thumbnail"
-				value="empty" />
+				value="<%=dto.getImage() == null ? "empty" : dto.getImage() %>" />
 			
-			<div class="col-3">
-				<label class="form-label" for="title">가게이름</label>
-				<input class="form-control" type="text" name="title" id="title" />
+			<input type="hidden" name="num" value="<%=dto.getNum() %>" />
+			<div>
+				<label for="title">식당이름</label>
+				<input type="text" name="title" id="title" value="<%=dto.getTitle() %>" />
 			</div>
 			
 			<div class="mt-2">
 				<label class="form-label" for="divfood">분류 선택</label>
 		        <select class="dropdown" name="divfood" id="divfood">
-		            <option value="" selected>선택</option>
+		            <option value="<%=dto.getDivfood() %>" selected><%=dto.getDivfood() %></option>
 		            <option value="일식">일식</option>
 		            <option value="한식">한식</option>
 		            <option value="중식">중식</option>
@@ -51,12 +66,12 @@
 			</div>
 			
 			<div>
-				<label class="form-label" for="content">내용</label>
-				<textarea name="content" id="content" rows="10"></textarea>
+				<label for="content">내용</label>
+				<textarea name="content" id="content"><%=dto.getContent() %></textarea>
 			</div>
-			<button class="btn btn-primary" type="submit" onclick="submitContents(this)">등록</button>
+			<button class="btn btn-primary" type="submit" onclick="submitContents(this)">수정확인</button>
 		</form>
-		<a href="${pageContext.request.contextPath }/index.jsp">돌아가기</a>
+		<a class="btn btn-danger" href="${pageContext.request.contextPath }/food/detail.jsp?num=<%=num %>">취소</a>
 		
 		<form id="imageForm" action="thumbnail_upload.jsp" method="post" enctype="multipart/form-data">
 			썸네일 사진
@@ -64,6 +79,13 @@
 			<button type="submit">업로드</button>
 		</form>
 	</div>
+	
+	<script>
+		<%if(!writer.equals(dto.getWriter())){ %>
+			alert("작성자만 수정할 수 있습니다.")
+			location.href = "${pageContext.request.contextPath }/food/detail.jsp?num="+num;
+		<%}%>
+	</script>
 	
 	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
 	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
