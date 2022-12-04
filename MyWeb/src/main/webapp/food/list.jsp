@@ -83,6 +83,28 @@
 				</div>
 			<%} %>
 		</div>
+		
+		<nav>
+			<ul class="pagination justify-content-center">
+				<%if(startPageNum != 1){ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+					</li>
+				<%} %>
+				
+				<%for(int i = startPageNum; i <= endPageNum; i++){ %>
+					<li class="page-item <%=pageNum == i ? "active" : "" %>">
+						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+					</li>
+				<%} %>
+				
+				<%if(endPageNum < totalPageCount){ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+					</li>
+				<%} %>
+			</ul>
+		</nav>
 	</div>
 </body>
 </html>
