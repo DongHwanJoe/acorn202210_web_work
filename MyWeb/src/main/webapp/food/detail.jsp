@@ -90,7 +90,7 @@
 		</ul>
 	</nav>
 	
-	<div class="container">
+	<div class="container mt-2">
 		<div class="container row">
 			<div class="col-4">
 				<%if(dto.getImage() == null){ %>
@@ -108,14 +108,14 @@
 					<h4><strong><%=dto.getTitle() %></strong></h4>
 				</div>
 				
-				<div style="float;">
-					<div>작성자 <%=dto.getWriter() %></div>
-					<div>작성일 <%=dto.getRegdate() %></div>
-					<div>조회수 <%=dto.getViewCount() %></div>
+				<div>
+					<div style="float:left;">작성자 <%=dto.getWriter() %> | &nbsp;</div>
+					<div style="float:left;">작성일 <%=dto.getRegdate() %> | &nbsp;</div>
+					<div> 조회수 <%=dto.getViewCount() %></div>
 				</div>
 				
 				<div>
-					<div>좋아요 <%=dto.getLikeCount() %></div>
+					<div style="float:left;">좋아요 <%=dto.getLikeCount() %> | &nbsp;</div>
 					<div>싫어요 <%=dto.getDislikeCount() %></div>
 				</div>
 			</div>

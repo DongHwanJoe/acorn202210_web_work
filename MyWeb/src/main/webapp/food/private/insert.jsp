@@ -33,7 +33,7 @@
 		<%if(isSuccess){ %>
 			<p>
 				새 가게를 등록했습니다.
-				<a href="${pageContext.request.contextPath }/food/list.jsp">확인</a>
+				<a href="${pageContext.request.contextPath }/index.jsp">확인</a>
 			</p>
 		<%}else{ %>
 			<p>

@@ -83,7 +83,7 @@
 		   					<li class="list-group-item">좋아요 <%=tmp.getLikeCount() %> &nbsp;&nbsp;&nbsp;싫어요 <%=tmp.getDislikeCount() %></li>
 						</ul>
 						<div class="card-body">
-							<a href="food/detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary" style="float: right;">상세보기</a>
+							<a href="detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary" style="float: right;">상세보기</a>
 						</div>
 						<div class="card-footer text-muted">
 						  	<p style="float: left;" class="mb-0">작성일</p>
@@ -100,19 +100,19 @@
 			<ul class="pagination justify-content-center mt-3">
 				<%if(startPageNum != 1){ %>
 					<li class="page-item">
-						<a class="page-link" href="korean.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+						<a class="page-link" href="etc.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
 					</li>
 				<%} %>
 				
 				<%for(int i = startPageNum; i <= endPageNum; i++){ %>
 					<li class="page-item <%=pageNum == i ? "active" : "" %>">
-						<a class="page-link" href="korean.jsp?pageNum=<%=i %>"><%=i %></a>
+						<a class="page-link" href="etc.jsp?pageNum=<%=i %>"><%=i %></a>
 					</li>
 				<%} %>
 				
 				<%if(endPageNum < totalPageCount){ %>
 					<li class="page-item">
-						<a class="page-link" href="korean.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+						<a class="page-link" href="etc.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
 					</li>
 				<%} %>
 			</ul>

@@ -83,7 +83,7 @@
 		   					<li class="list-group-item">좋아요 <%=tmp.getLikeCount() %> &nbsp;&nbsp;&nbsp;싫어요 <%=tmp.getDislikeCount() %></li>
 						</ul>
 						<div class="card-body">
-							<a href="food/detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary" style="float: right;">상세보기</a>
+							<a href="detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary" style="float: right;">상세보기</a>
 						</div>
 						<div class="card-footer text-muted">
 						  	<p style="float: left;" class="mb-0">작성일</p>
