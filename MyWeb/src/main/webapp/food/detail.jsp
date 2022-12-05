@@ -65,7 +65,7 @@
 	<div class="container">
 		<div class="container btn-group justify-content-between" id="list">
 			<div class="btn-group" role="group" aria-label="Basic outlined example">
-				<a type="button" class="btn btn-outline-primary" href="list.jsp">목록으로</a>
+				<button class="btn btn-outline-primary" onclick="history.back()">목록으로</button>
 			</div>
 		    
 			<%-- 만일 글 작성자가 로그인 된 아이디와 같다면 수정, 삭제 링크를 제공한다. --%>

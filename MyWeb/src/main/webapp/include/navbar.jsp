@@ -5,7 +5,7 @@
 <%-- /include/navbar.jsp 내용 --%>
 <%
 	//이 navbar.jsp 페이지가 어디에 include 됐는지 읽어와 보기
-	String thisPage = request.getParameter("thisPage"); // "index" | "game" | "study" | "file" | "cafe"
+	String thisPage = request.getParameter("thisPage"); // "index" | "한식" | "양식" | "일식" | "중식" | "기타"
 	
 	String id = (String)session.getAttribute("id");
 	UsersDto dto = UsersDao.getInstance().getData(id);
@@ -21,7 +21,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-info">
 	<div class="container">
 		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-			<img src="https://acornedu.co.kr/images/n_logo.png" alt="" width="200" height="50" class="d-inline-block align-text-top">
+			<img src="${pageContext.request.contextPath }/images/text111.png" alt="" width="200" height="50" class="d-inline-block align-text-top">
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -30,10 +30,19 @@
 		<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link <%= thisPage.equals("file") ? "active" : "" %>" href="${pageContext.request.contextPath }/file/list.jsp">파일 목록</a>
+					<a class="nav-link <%= thisPage.equals("한식") ? "active" : "" %>" href="${pageContext.request.contextPath }/food/korean.jsp">한식</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link <%= thisPage.equals("cafe") ? "active" : "" %>" href="${pageContext.request.contextPath }/cafe/list.jsp">글 목록</a>
+					<a class="nav-link <%= thisPage.equals("양식") ? "active" : "" %>" href="${pageContext.request.contextPath }/food/western.jsp">양식</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link <%= thisPage.equals("일식") ? "active" : "" %>" href="${pageContext.request.contextPath }/food/japanese.jsp">일식</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link <%= thisPage.equals("중식") ? "active" : "" %>" href="${pageContext.request.contextPath }/food/chinese.jsp">중식</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link <%= thisPage.equals("기타") ? "active" : "" %>" href="${pageContext.request.contextPath }/food/etc.jsp">기타</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav">
@@ -64,8 +73,8 @@
 								
 								<ul class="dropdown-menu">
 								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보</a></li>
-								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/private/study.jsp">공부하러 가기</a></li>
-								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/private/game.jsp">게임하러 가기</a></li>
+								  <li><a class="dropdown-item" href="#">임시</a></li>
+								  <li><a class="dropdown-item" href="#">임시</a></li>
 								  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a></li>
 								</ul>
 							</div>

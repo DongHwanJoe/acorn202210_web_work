@@ -350,6 +350,301 @@ public class FoodDao {
 		return count;
 	}
 	
+	public List<FoodDto> getEtc(FoodDto dto){
+		List<FoodDto> list = new ArrayList<>();
+		
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT * FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " FROM"
+					+ " 	(SELECT num, writer, title, viewCount,"
+					+ " likeCount, dislikeCount, divfood, image, TO_CHAR(regdate, 'YYYY.MM.DD') AS regdate"
+					+ "	FROM recom_food"
+					+ " WHERE divfood = '기타'"
+					+ " ORDER BY likeCount DESC, num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			while (rs.next()) {
+				FoodDto tmp = new FoodDto();
+				
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setViewCount(rs.getInt("viewCount"));
+				tmp.setLikeCount(rs.getInt("likeCount"));
+				tmp.setDislikeCount(rs.getInt("dislikeCount"));
+				tmp.setDivfood(rs.getString("divfood"));
+				tmp.setImage(rs.getString("image"));
+				tmp.setRegdate(rs.getString("regdate"));
+				
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	public List<FoodDto> getChinese(FoodDto dto){
+		List<FoodDto> list = new ArrayList<>();
+		
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT * FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " FROM"
+					+ " 	(SELECT num, writer, title, viewCount,"
+					+ " likeCount, dislikeCount, divfood, image, TO_CHAR(regdate, 'YYYY.MM.DD') AS regdate"
+					+ "	FROM recom_food"
+					+ " WHERE divfood = '중식'"
+					+ " ORDER BY likeCount DESC, num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			while (rs.next()) {
+				FoodDto tmp = new FoodDto();
+				
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setViewCount(rs.getInt("viewCount"));
+				tmp.setLikeCount(rs.getInt("likeCount"));
+				tmp.setDislikeCount(rs.getInt("dislikeCount"));
+				tmp.setDivfood(rs.getString("divfood"));
+				tmp.setImage(rs.getString("image"));
+				tmp.setRegdate(rs.getString("regdate"));
+				
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	public List<FoodDto> getJapanese(FoodDto dto){
+		List<FoodDto> list = new ArrayList<>();
+		
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT * FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " FROM"
+					+ " 	(SELECT num, writer, title, viewCount,"
+					+ " likeCount, dislikeCount, divfood, image, TO_CHAR(regdate, 'YYYY.MM.DD') AS regdate"
+					+ "	FROM recom_food"
+					+ " WHERE divfood = '일식'"
+					+ " ORDER BY likeCount DESC, num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			while (rs.next()) {
+				FoodDto tmp = new FoodDto();
+				
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setViewCount(rs.getInt("viewCount"));
+				tmp.setLikeCount(rs.getInt("likeCount"));
+				tmp.setDislikeCount(rs.getInt("dislikeCount"));
+				tmp.setDivfood(rs.getString("divfood"));
+				tmp.setImage(rs.getString("image"));
+				tmp.setRegdate(rs.getString("regdate"));
+				
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	public List<FoodDto> getWestern(FoodDto dto){
+		List<FoodDto> list = new ArrayList<>();
+		
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT * FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " FROM"
+					+ " 	(SELECT num, writer, title, viewCount,"
+					+ " likeCount, dislikeCount, divfood, image, TO_CHAR(regdate, 'YYYY.MM.DD') AS regdate"
+					+ "	FROM recom_food"
+					+ " WHERE divfood = '양식'"
+					+ " ORDER BY likeCount DESC, num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			while (rs.next()) {
+				FoodDto tmp = new FoodDto();
+				
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setViewCount(rs.getInt("viewCount"));
+				tmp.setLikeCount(rs.getInt("likeCount"));
+				tmp.setDislikeCount(rs.getInt("dislikeCount"));
+				tmp.setDivfood(rs.getString("divfood"));
+				tmp.setImage(rs.getString("image"));
+				tmp.setRegdate(rs.getString("regdate"));
+				
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	public List<FoodDto> getKorean(FoodDto dto){
+		List<FoodDto> list = new ArrayList<>();
+		
+		//필요한 객체를 담을 지역변수를 미리 만들어 둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection Pool에서 Connection 객체를 하나 얻어온다.
+			conn = new DbcpBean().getConn();
+			//실행할 sql문의 뼈대 구성하기
+			String sql = "SELECT * FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " FROM"
+					+ " 	(SELECT num, writer, title, viewCount,"
+					+ " likeCount, dislikeCount, divfood, image, TO_CHAR(regdate, 'YYYY.MM.DD') AS regdate"
+					+ "	FROM recom_food"
+					+ " WHERE divfood = '한식'"
+					+ " ORDER BY likeCount DESC, num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+
+			pstmt = conn.prepareStatement(sql);
+			//sql문의 ?에 바인딩 할게 있으면 바인딩하기
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//SELECT문을 수행하고 결과값을 얻어온다.
+			rs = pstmt.executeQuery();
+			//반복문 or if문 돌면서 ResultSet에서 필요한 값을 얻어낸다.
+			while (rs.next()) {
+				FoodDto tmp = new FoodDto();
+				
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setViewCount(rs.getInt("viewCount"));
+				tmp.setLikeCount(rs.getInt("likeCount"));
+				tmp.setDislikeCount(rs.getInt("dislikeCount"));
+				tmp.setDivfood(rs.getString("divfood"));
+				tmp.setImage(rs.getString("image"));
+				tmp.setRegdate(rs.getString("regdate"));
+				
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection Pool에 Connection 반납하기
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
 	public List<FoodDto> getList(FoodDto dto){
 		List<FoodDto> list = new ArrayList<>();
 		

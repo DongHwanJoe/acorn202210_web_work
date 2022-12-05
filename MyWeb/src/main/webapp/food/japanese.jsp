@@ -6,8 +6,8 @@
 <%
 	String id = (String)session.getAttribute("id");
 	
-	final int PAGE_ROW_COUNT = 5;
-	final int PAGE_DISPLAY_COUNT = 4;
+	final int PAGE_ROW_COUNT = 8;
+	final int PAGE_DISPLAY_COUNT = 5;
 	
 	int pageNum = 1;
 	
@@ -30,13 +30,13 @@
 	FoodDto dto = new FoodDto();
 	dto.setStartRowNum(startRowNum);
 	dto.setEndRowNum(endRowNum);
-	List<FoodDto> list = FoodDao.getInstance().getList(dto);
+	List<FoodDto> list = FoodDao.getInstance().getJapanese(dto);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/food/list.jsp</title>
+<title>/food/japanese.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <style>
@@ -49,11 +49,14 @@
 </style>
 </head>
 <body>
+	<jsp:include page="/include/navbar.jsp">
+		<jsp:param value="일식" name="thisPage"/>
+	</jsp:include>
+
 	<div class="container">
 		<div class="row mt-1">
 			<div class="col-lg-6 col-sm-12 text-lg-start text-center">
-				<a href="${pageContext.request.contextPath }/index.jsp">인덱스로</a>
-				<h3>글 목록 입니다.</h3>
+				<h3>일식</h3>
 			</div>
 			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
 				<a class="btn btn-primary text-lg-end text-center" href="${pageContext.request.contextPath }/food/private/insertform.jsp">새 글 작성</a>
@@ -64,9 +67,9 @@
 			<%for(FoodDto tmp:list){ %>
 				<div class="card col-md-6 col-lg-3">
 					<%if(tmp.getImage()==null){ %>
-						<svg id="thumbnailImage" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-						     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-						     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+						  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+						  <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
 						</svg>
           			<%}else{ %>
 						<img id="thumbnailImage" class="card-img-top" alt="thumbnail"
@@ -88,19 +91,19 @@
 			<ul class="pagination justify-content-center">
 				<%if(startPageNum != 1){ %>
 					<li class="page-item">
-						<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+						<a class="page-link" href="korean.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
 					</li>
 				<%} %>
 				
 				<%for(int i = startPageNum; i <= endPageNum; i++){ %>
 					<li class="page-item <%=pageNum == i ? "active" : "" %>">
-						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+						<a class="page-link" href="korean.jsp?pageNum=<%=i %>"><%=i %></a>
 					</li>
 				<%} %>
 				
 				<%if(endPageNum < totalPageCount){ %>
 					<li class="page-item">
-						<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+						<a class="page-link" href="korean.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
 					</li>
 				<%} %>
 			</ul>

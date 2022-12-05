@@ -30,35 +30,33 @@
 	FoodDto dto = new FoodDto();
 	dto.setStartRowNum(startRowNum);
 	dto.setEndRowNum(endRowNum);
-	List<FoodDto> list = FoodDao.getInstance().getList(dto);
+	List<FoodDto> list = FoodDao.getInstance().getKorean(dto);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/index.jsp</title>
+<title>/food/korean.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <style>
    #thumbnailImage{
-      width: 160px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border: 1px solid #cecece;
+      border-radius: 50%;
    }
 </style>
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
-		<jsp:param value="index" name="thisPage"/>
+		<jsp:param value="한식" name="thisPage"/>
 	</jsp:include>
-	
+
 	<div class="container">
-		<h1>인덱스 페이지 입니다.</h1>
-		
-		<div class="row">
-			<div class="row">
+		<div class="row mt-1">
 			<div class="col-lg-6 col-sm-12 text-lg-start text-center">
-				<h3>전체</h3>
+				<h3>한식</h3>
 			</div>
 			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
 				<a class="btn btn-primary text-lg-end text-center" href="${pageContext.request.contextPath }/food/private/insertform.jsp">새 글 작성</a>
@@ -83,7 +81,7 @@
 						<p class="card-text"><%=tmp.getDivfood() %></p>
 						<p class="card-text"><%=tmp.getLikeCount() %></p>
 						<p class="card-text"><%=tmp.getDislikeCount() %></p>
-						<a href="food/detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary">상세보기</a>
+						<a href="detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary">상세보기</a>
 					</div>
 				</div>
 			<%} %>
@@ -93,25 +91,23 @@
 			<ul class="pagination justify-content-center">
 				<%if(startPageNum != 1){ %>
 					<li class="page-item">
-						<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+						<a class="page-link" href="korean.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
 					</li>
 				<%} %>
 				
 				<%for(int i = startPageNum; i <= endPageNum; i++){ %>
 					<li class="page-item <%=pageNum == i ? "active" : "" %>">
-						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+						<a class="page-link" href="korean.jsp?pageNum=<%=i %>"><%=i %></a>
 					</li>
 				<%} %>
 				
 				<%if(endPageNum < totalPageCount){ %>
 					<li class="page-item">
-						<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+						<a class="page-link" href="korean.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
 					</li>
 				<%} %>
 			</ul>
 		</nav>
 	</div>
-	
-	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
