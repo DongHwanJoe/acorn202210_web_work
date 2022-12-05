@@ -39,14 +39,6 @@
 <title>/food/korean.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<style>
-   #thumbnailImage{
-      width: 100px;
-      height: 100px;
-      border: 1px solid #cecece;
-      border-radius: 50%;
-   }
-</style>
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
@@ -63,32 +55,49 @@
 			</div>
 		</div>
 		
-		<div class="row">
+		<div class="row row-cols-1 row-cols-md-4 g-4">
 			<%for(FoodDto tmp:list){ %>
-				<div class="card col-md-6 col-lg-3">
-					<%if(tmp.getImage()==null){ %>
-						<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
-						  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-						  <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-						</svg>
-          			<%}else{ %>
-						<img id="thumbnailImage" class="card-img-top" alt="thumbnail"
-						src="${pageContext.request.contextPath }<%=tmp.getImage()%>">
-           			<%} %>
-					
-					<div class="card-body">
-						<h5 class="card-title"><%=tmp.getTitle() %></h5>
-						<p class="card-text"><%=tmp.getDivfood() %></p>
-						<p class="card-text"><%=tmp.getLikeCount() %></p>
-						<p class="card-text"><%=tmp.getDislikeCount() %></p>
-						<a href="detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary">상세보기</a>
+				<div class="col">
+					<div class="card" style="width: 18rem;">
+						<%if(tmp.getImage()==null){ %>
+							<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="card-img-top" viewBox="0 0 16 16">
+							  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+							  <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+							</svg>
+	          			<%}else{ %>
+							<img id="thumbnailImage" width="200" height="200" class="card-img-top rounded" alt="thumbnail"
+							src="${pageContext.request.contextPath }<%=tmp.getImage()%>">
+	           			<%} %>
+						
+						<div class="card-body">
+							<p class="card-text"><%=tmp.getDivfood() %></p>
+							<h4 class="card-title"><strong><%=tmp.getTitle() %></strong></h5>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<p style="float: left;" class="mb-0">작성자</p>
+								<p style="float: right;" class="mb-0">
+									<strong><%=tmp.getWriter() %></strong>
+								</p>
+							</li>
+		   					<li class="list-group-item">좋아요 <%=tmp.getLikeCount() %> &nbsp;&nbsp;&nbsp;싫어요 <%=tmp.getDislikeCount() %></li>
+						</ul>
+						<div class="card-body">
+							<a href="food/detail.jsp?num=<%=tmp.getNum() %>" class="btn btn-primary" style="float: right;">상세보기</a>
+						</div>
+						<div class="card-footer text-muted">
+						  	<p style="float: left;" class="mb-0">작성일</p>
+							<p style="float: right;" class="mb-0">
+								<strong><%=tmp.getRegdate() %></strong>
+							</p>				
+						</div>
 					</div>
 				</div>
 			<%} %>
 		</div>
 		
 		<nav>
-			<ul class="pagination justify-content-center">
+			<ul class="pagination justify-content-center mt-3">
 				<%if(startPageNum != 1){ %>
 					<li class="page-item">
 						<a class="page-link" href="korean.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
