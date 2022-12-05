@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import food.dto.FoodDto;
-import test.cafe.dto.CafeDto;
 import test.util.DbcpBean;
 
 public class FoodDao {

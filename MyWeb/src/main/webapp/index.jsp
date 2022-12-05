@@ -46,9 +46,7 @@
 	</jsp:include>
 	
 	<div class="container">
-		<h1>인덱스 페이지 입니다.</h1>
-		
-		<div class="row">
+		<div class="row mt-1">
 			<div class="row">
 			<div class="col-lg-6 col-sm-12 text-lg-start text-center">
 				<h3>전체</h3>
@@ -58,7 +56,7 @@
 			</div>
 		</div>
 		
-		<div class="row row-cols-1 row-cols-md-4 g-4">
+		<div class="row row-cols-1 row-cols-md-4 g-4 mt-1">
 			<%for(FoodDto tmp:list){ %>
 				<div class="col">
 					<div class="card" style="width: 18rem;">

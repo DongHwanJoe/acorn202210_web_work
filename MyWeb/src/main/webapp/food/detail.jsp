@@ -1,3 +1,5 @@
+<%@page import="test.users.dao.UsersDao"%>
+<%@page import="test.users.dto.UsersDto"%>
 <%@page import="food.dto.FoodDto"%>
 <%@page import="food.dao.FoodDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,6 +11,7 @@
 	FoodDao.getInstance().addViewCount(num);
 	
 	String id = (String)session.getAttribute("id");
+	UsersDto dto2 = UsersDao.getInstance().getData(id);
 %>
 <!DOCTYPE html>
 <html>
@@ -21,9 +24,72 @@
 	#list{
 		padding-left: 0px;
 	}
+	#profileImage{
+		width: 30px;
+		height: 30px;
+		border: 1px solid #cecece;
+		border-radius: 50%;
+	}
+	#main{
+		text-align:start; 
+		border-top:2px solid #111; 
+		border-bottom:2px solid #111;"
+	}
 </style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-info">
+		<div class="container">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="${pageContext.request.contextPath }/images/text111.png" alt="" width="200" height="50" class="d-inline-block align-text-top">
+			</a>
+			<div class="container mt-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="${pageContext.request.contextPath }/index.jsp">Home</a>
+					</li>
+					<li class="breadcrumb-item active"> <strong><%=dto.getTitle() %></strong></li>
+				</ol>
+			</div>
+		</div>
+		<ul class="navbar-nav">
+				<%if(id == null){ %>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath }/users/loginform.jsp">로그인</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath }/users/signup_form.jsp">회원가입</a>
+					</li>	
+				<%}else{ %>
+					<li>
+						<%if(dto2.getProfile()==null){ %>
+							<svg id="profileImage" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+							     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+							     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+							</svg>
+               			<%}else{ %>
+							<img id="profileImage" 
+							src="${pageContext.request.contextPath }<%=dto2.getProfile()%>">
+               			<%} %>
+					</li>
+					<li class="nav-item">
+						<div class="dropdown">
+							<a class="nav-link pt-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							  <strong><%=id %></strong>
+							</a>
+							
+							<ul class="dropdown-menu">
+							  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/private/info.jsp">회원정보</a></li>
+							  <li><a class="dropdown-item" href="#">임시</a></li>
+							  <li><a class="dropdown-item" href="#">임시</a></li>
+							  <li><a class="dropdown-item" href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a></li>
+							</ul>
+						</div>
+					</li>
+				<%} %>
+		</ul>
+	</nav>
+	
 	<div class="container">
 		<div class="container row">
 			<div class="col-4">
@@ -37,23 +103,29 @@
 	   			<%} %>
 			</div>
 			<div class="col-8">
-				<div>분류 <strong><%=dto.getDivfood() %></strong></div>
-				<div>식당이름 <strong><%=dto.getTitle() %></strong></div>
+				<div><strong><%=dto.getDivfood() %></strong></div>
+				<div>
+					<h4><strong><%=dto.getTitle() %></strong></h4>
+				</div>
+				
+				<div style="float;">
+					<div>작성자 <%=dto.getWriter() %></div>
+					<div>작성일 <%=dto.getRegdate() %></div>
+					<div>조회수 <%=dto.getViewCount() %></div>
+				</div>
+				
+				<div>
+					<div>좋아요 <%=dto.getLikeCount() %></div>
+					<div>싫어요 <%=dto.getDislikeCount() %></div>
+				</div>
 			</div>
 		</div>
-		<div class="container row">
-			<div>작성자 <%=dto.getWriter() %></div>
-			
-			<div>조회수 <%=dto.getViewCount() %></div>
-			
-			<div>좋아요 <%=dto.getLikeCount() %></div>
-			
-			<div>싫어요 <%=dto.getDislikeCount() %></div>
-			
-			<div>작성일 <%=dto.getRegdate() %></div>
-		</div>
 		
-		<div><%=dto.getContent() %></div>
+		<div id="main" class="mt-2 mb-2">
+			<div>
+				<%=dto.getContent() %>
+			</div>
+		</div>
 	</div>
 	
 	<div class="container">
