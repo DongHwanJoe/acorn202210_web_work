@@ -5,9 +5,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- /include/navbar.jsp 내용 --%>
 <%
-	//이 navbar.jsp 페이지가 어디에 include 됐는지 읽어와 보기
-	String thisPage = request.getParameter("thisPage"); // "index" | "game" | "study" | "file" | "cafe"
-	
 	String id = (String)session.getAttribute("id");
 	UsersDto dto = UsersDao.getInstance().getData(id);
 	request.setAttribute("dto", dto);
@@ -32,10 +29,10 @@
 		<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link <%= thisPage.equals("file") ? "active" : "" %>" href="${pageContext.request.contextPath }/file/list.jsp">파일 목록</a>
+					<a class="nav-link ${param.thisPage eq 'file' ? 'active' : ''}" href="${pageContext.request.contextPath }/file/list.jsp">파일 목록</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link <%= thisPage.equals("cafe") ? "active" : "" %>" href="${pageContext.request.contextPath }/cafe/list.jsp">글 목록</a>
+					<a class="nav-link ${param.thisPage eq 'cafe' ? 'active' : ''}" href="${pageContext.request.contextPath }/cafe/list.jsp">글 목록</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav">
