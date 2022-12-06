@@ -76,6 +76,7 @@
 	}
 </style>
 <body>
+	<%-- 페이지를 include 시킬때는 WEB-INF 폴더에 있는 페이지도 include 가능하다. --%>
 	<jsp:include page="/include/navbar.jsp">
 		<jsp:param value="file" name="thisPage"/>
 	</jsp:include>

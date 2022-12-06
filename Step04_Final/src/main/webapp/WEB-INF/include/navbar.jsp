@@ -24,6 +24,11 @@
 	          			<a class="nav-link ${param.thisPage eq 'gallery' ? 'active' : '' }" href="${pageContext.request.contextPath}/gallery/list.jsp">겔러리</a>
 	        		</li>
       			</ul>
+      			<%--
+      				when test = "${empty id}"
+      				
+      				위의 표현식은 session 영역에 로그인 하지않았다면
+      			 --%>
       			<c:choose>
       				<c:when test="${empty id }">
 	      				<a class="btn btn-outline-primary btn-sm me-2" href="${pageContext.request.contextPath}/users/signup_form.jsp">회원가입</a>
